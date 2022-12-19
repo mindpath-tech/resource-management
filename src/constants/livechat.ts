@@ -7,7 +7,7 @@ export const FRESH_CHAT_ROUTES = {
 };
 
 export const FRESH_CHAT_DEFAULT_AGENT_DETAILS = {
-  firstName: 'abi',
+  firstName: 'rm',
   lastName: 'bot',
 };
 

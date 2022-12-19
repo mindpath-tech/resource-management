@@ -44,7 +44,7 @@ export class DialogFactory {
 
   /**
    * Return main dialogs.
-   * @param botContext AbiContext
+   * @param botContext RmContext
    * @returns MainDialog
    */
   public static getMainDialog(botContext: BotContext): MainDialog {

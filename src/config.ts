@@ -11,7 +11,7 @@ export const ormConfig = {
   port: Number(env.DB_PORT) || 3306,
   username: env.DB_USER || 'root',
   password: env.DB_PASSWORD || '',
-  database: env.DB_NAME || 'abi-bot-dev',
+  database: env.DB_NAME || 'rm-bot-dev',
   synchronize: false,
   dropSchema: false,
   logging: false,

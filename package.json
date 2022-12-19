@@ -1,7 +1,7 @@
 {
-  "name": "abi-bot",
+  "name": "rm-bot",
   "version": "0.0.0",
-  "description": "Beroe abi",
+  "description": "",
   "author": "Mindpath",
   "license": "MIT",
   "main": "./lib/src/index.js",

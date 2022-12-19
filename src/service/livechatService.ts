@@ -58,7 +58,7 @@ export class LiveChatService {
   public async endConversation(conversationId: string): Promise<void> {
     const conversation = await this._conversationService.getByConversationId(conversationId);
     if (!conversation) {
-      // This is the conversation of Web AbiBot. Do not do anything.
+      // This is the conversation of Web RmBot. Do not do anything.
       this._botLogging.logDebug({
         message: 'Conversation not found',
         action: 'InvalidConversation',

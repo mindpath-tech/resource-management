@@ -1,18 +1,4 @@
-# Abi
-
-Abi is a smart AI assistant that helps you & your procurement team to get answers to any sourcing query with relevant data points in the shortest possible time. You can also find answers to queries related to the following areas from both proprietary and partner-led information databases -
-
-- Category Intelligence
-
-- Supplier Shortlisting
-
-- Risk & Compliance
-
-- Category Benchmarks
-
-- Market Monitoring Dashboards
-
-- Commodity Price and Cost Drivers
+# Resource management
 
 # Setup
 
@@ -73,10 +59,6 @@ Abi is a smart AI assistant that helps you & your procurement team to get answer
 │   └── utils               // Contain some utility functions.
 └── tsconfig.json           // Typescript configuration file.
 ```
-
-# Deployment
-
-![](src/assets/deploymentDiagram.png)
 
 ## Aws
 

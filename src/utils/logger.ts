@@ -30,7 +30,7 @@ const combinedTransport = new winston.transports.DailyRotateFile({
 const logger = winston.createLogger({
   level: process.env.LOG_LEVEL || 'info',
   format: combine(timestamp(), json()),
-  defaultMeta: { service: 'abi-bot-service' },
+  defaultMeta: { service: 'rm-bot-service' },
   transports: [
     //
     // - Write all logs with importance level of `error` or less to `error.log`

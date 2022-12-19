@@ -42,7 +42,7 @@ export default class BotLogging {
       requestId: this._requestId,
       message: logInfo.message || 'New Request',
       action: logInfo.action || 'begin',
-      source: logInfo.source || 'AbiLogging#begin',
+      source: logInfo.source || 'RmLogging#begin',
     });
 
     logger.info({
@@ -57,7 +57,7 @@ export default class BotLogging {
       requestId: this._requestId,
       message: logInfo.message || 'Request has been completed',
       action: logInfo.action || 'end',
-      source: logInfo.source || 'AbiLogging#logEnd',
+      source: logInfo.source || 'RmLogging#logEnd',
     });
 
     logger.info({

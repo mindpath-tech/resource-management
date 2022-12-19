@@ -10,10 +10,10 @@ import { User } from '../types/bot';
  * Class process message from bot to agent and agent to bot.
  */
 export class MessageProcessor {
-  private _abiContext: BotContext;
+  private _rmContext: BotContext;
 
   constructor(botContext: BotContext) {
-    this._abiContext = botContext;
+    this._rmContext = botContext;
   }
 
   public async processMessage(
@@ -30,18 +30,18 @@ export class MessageProcessor {
       return {} as ConversationModel;
     }
     // Check whether conversation exist
-    let conversationModel = await this._abiContext.conversationService.getByConversationId(conversationId);
+    let conversationModel = await this._rmContext.conversationService.getByConversationId(conversationId);
     if (!conversationModel && senderChannelType === ChannelTypeEnum.FRESH_CHAT) {
       // Fresh is sending first message.
       // Check whether conversation exist for userId
-      conversationModel = await this._abiContext.conversationService.getByUserById(user.userId);
+      conversationModel = await this._rmContext.conversationService.getByUserById(user.userId);
       if (conversationModel && !conversationModel.agentChannelConversationId) {
         conversationModel.agentChannelConversationId = conversationId;
       }
     }
 
     if (!conversationModel) {
-      // Conversation not found, Case when we got webhook request for web abi bot.
+      // Conversation not found, Case when we got webhook request for web rm bot.
       // Do nothing in this case
       return {} as ConversationModel;
     }
@@ -59,15 +59,15 @@ export class MessageProcessor {
     let channelConnector!: IChannelConnector;
     switch (receiverChannelType) {
       case ChannelTypeEnum.FRESH_CHAT: {
-        channelConnector = this._abiContext.freshChatConnector;
+        channelConnector = this._rmContext.freshChatConnector;
         break;
       }
       case ChannelTypeEnum.MS_TEAMS: {
-        channelConnector = this._abiContext.teamConnector;
+        channelConnector = this._rmContext.teamConnector;
         break;
       }
       case ChannelTypeEnum.EMULATOR: {
-        channelConnector = this._abiContext.teamConnector;
+        channelConnector = this._rmContext.teamConnector;
         break;
       }
     }
@@ -78,7 +78,7 @@ export class MessageProcessor {
     if (conversationModel.agentChannelConversationId) {
       if (conversationModel.status !== ConversationStatusEnum.LIVE_AGENT || conversationModel.skipResolveOperation) {
         conversationModel.status = ConversationStatusEnum.LIVE_AGENT;
-        await this._abiContext.conversationService.updateConversation(conversationModel.id, {
+        await this._rmContext.conversationService.updateConversation(conversationModel.id, {
           status: ConversationStatusEnum.LIVE_AGENT,
           skipResolveOperation: false,
           agentChannelConversationId: conversationModel.agentChannelConversationId,
@@ -104,8 +104,8 @@ export class MessageProcessor {
         agentChannelType: conversation.channelType,
       };
       conversationModel.user.agentChannelUserId = conversation.userId!;
-      await this._abiContext.userService.updateUser(conversationModel.user.id, conversationModel.user);
-      await this._abiContext.conversationService.updateConversation(conversationModel.id, conversationModel);
+      await this._rmContext.userService.updateUser(conversationModel.user.id, conversationModel.user);
+      await this._rmContext.conversationService.updateConversation(conversationModel.id, conversationModel);
       return conversationModel;
     }
   }
